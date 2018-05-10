@@ -6,7 +6,7 @@ keywords: Youtube comment comments generator markov create make replies thread
 description: Generates fake youtube comments for a given video. The created comments are based on the existing comments on that video. If a youtube video has alot of comments the results will be best.
 theme_color: "#ffffff"
 baseurl: 
-api_url: https://ess-server.herokuapp.com/api/
+api_url: https://ess-server.herokuapp.com/api
 url: https://ycae.esstudio.site
 enforce_ssl: ycae.esstudio.site
 abbrv: YCAE
