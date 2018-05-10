@@ -1,0 +1,55 @@
+---
+title: Youtube Comments are Evil
+timezone: Europe/Amsterdam
+volledige-titel: Youtube Comments are Evil
+keywords: Youtube comment comments generator markov create make replies thread
+description: Generates fake youtube comments for a given video. The created comments are based on the existing comments on that video. If a youtube video has alot of comments the results will be best.
+theme_color: "#ffffff"
+baseurl: 
+api_url: http://localhost:3000/api
+abbrv: YCAE
+short_name: YCAE
+dribbble_username: 
+facebook_username: 
+flickr_username: 
+github_username: LesterGallagher
+instagram_username: 
+linkedin_username: 
+pinterest_username: 
+twitter_username: 
+youtube_username: 9Wereld
+googleplus_username: 
+facebook:
+  app_id: 
+  publisher: 
+  admins: 
+webmaster_verifications:
+  google: 
+  bing: 
+  alexa: 
+  yandex: 
+  baidu: 
+twitter:
+  username: 
+# url: https://esstudio.site
+# enforce_ssl: esstudio.site
+plugins:
+- jekyll-seo-tag
+- jekyll-feed
+markdown: kramdown
+theme: minima
+author:
+  name: Sem Postma
+  from: Oosterhout, Noord Brabant, The Netherlands
+  role: Developer
+  email: sem.postma@gmail.com
+designer:
+  name: Sem Postma
+  from: Oosterhout, Noord Brabant, The Netherlands
+  role: Developer
+  email: sem.postma@gmail.com
+google_analytics: UA-112439526-6
+
+
+
+

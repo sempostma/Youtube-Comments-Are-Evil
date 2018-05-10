@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<div class="blog-details">
+  <article class="post-details" id="post-details">
+    <header role="bog-header" class="bog-header text-center">
+      <h3>
+        <span>{{ page.date | date: '%d' }}</span> {{ page.date | date: '%B %Y' }}
+        <h2> {{ page.title }}</h2>
+    </header>
+    <figure>
+      <img src="{{ page.image  | absolute_url }}" alt="" class="img-responsive" /> </figure>
+    <div class="enter-content">
+      {{ content }}
+    </div>
+  </article>
+</div>

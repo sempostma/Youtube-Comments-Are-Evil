@@ -1,0 +1,154 @@
+
+ .svg-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    fill: #ccc;
+    padding-right: 5px;
+    vertical-align: text-top;
+}
+
+.social-media-list {
+	list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.social-media-list li {
+	padding-top: 5px;
+}
+
+.social-media-list li:hover {
+    text-decoration: none;
+}
+
+.social-media-list li:hover.username {
+	text-decoration: underline;
+}
+
+.loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    left: calc(50% - 30px);
+    top: calc(50% - 30px);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+#vids-panel {
+    margin-top: 10px;
+}
+
+#vids-results {
+    position: relative;
+    min-height: 200px;
+    max-height: 60vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#vids-results img, #vids-results .media-heading {
+    cursor: pointer;
+}
+
+.btn {
+    animation: jumpin .2s ease;
+}
+
+@keyframes jumpin {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+.comment {
+    font-size: 1.6em;
+    margin-top: 10px;
+}
+
+.comment .reply-comment {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #999;
+}
+
+.comment .like-amount {
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+.comment .all-replies {
+    font-weight: bold;
+}
+
+.comment .media-heading {
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.comment .media-heading .text-muted {
+    font-weight: normal;
+}
+
+.comment img {
+    border-radius: 50%;
+}
+
+.comment .icon-dislike {
+    display: inline-block;
+}
+
+.comment .icon-like {
+    display: inline-block;
+}
+
+.comment .yt-icon {
+    width: 16px;
+    fill: #888;
+    display: inline-block;
+}
+
+#comment-container {
+    min-height: 180px;
+    position: relative;
+    padding: 5px;
+}
+
+#footer {
+    background: #333;
+    margin-top: 100px;
+    padding: 50px 0;
+}
+
+footer h2, footer a {
+    color: #fff;
+}

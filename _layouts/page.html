@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<main role="main-inner-wrapper" class="{{ page.title | downcase }}-page" class="container">
+    <div class="row">
+        <section class="col-xs-12 col-sm-6 col-md-6 col-lg-6 ">
+            <article role="pge-title-content">
+                <header>
+                    <h2>
+                        <span>{{ page.title }}</span> {{ page.greytitle }}</h2>
+                </header>
+                <p>{{ page.description }}</p>
+            </article>
+        </section>
+        <section class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <article class="{{ page.title | downcase }}-content">
+                {{ content }}
+            </article>
+        </section>
+        <div class="clearfix"></div>
+    </div>
+</main>

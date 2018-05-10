@@ -1,0 +1,7 @@
+root:
+  - page: Choose Video
+    url: '#choose-video'
+  - page: Create Comment
+    url: '#create-comment'
+  - page: Footer
+    url: '#footer'

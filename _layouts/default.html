@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+
+  <body id="top" data-spy="scroll" data-target=".navbar" data-offset="80">
+    	{% include header.html %}
+      <!--[if lte IE 9]>
+          <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+      <![endif]-->
+      {{ content }}
+
+    {% include footer.html %}
+  </body>
+</html>
