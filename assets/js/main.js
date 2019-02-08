@@ -1,4 +1,52 @@
+(function () {
+    loadUrlParams(getParameterByName('video'));
 
+    window.onpopstate = function (e) {
+        if (e.state && e.state.videoId) {
+            loadUrlParams(e.state.videoId);
+        }
+        else {
+            loadUrlParams(null);
+        }
+    };
+})();
+
+function loadUrlParams(videoId) {
+    var canonicalHref = '';
+    if (videoId) {
+        if (videoId.match('/watch')) {
+            videoId = getParameterByName('v', videoId);
+        }
+        console.log(videoId);
+        canonicalHref = location.protocol + '//' + location.host + location.pathname + '?video=' + encodeURIComponent(videoId);
+        analyzeNewVideo(videoId);
+    } else {
+        canonicalHref = location.protocol + '//' + location.host + location.pathname;
+    }
+    setCannonicalUrl(canonicalHref);
+}
+
+function setCannonicalUrl(canonicalHref) {
+    var link = document.head.querySelector('[rel=canonical]');
+    if (link) {
+        link.setAttribute('href', canonicalHref);
+    } else {
+        link = document.createElement('link');
+        link.setAttribute('rel', 'canonical');
+        link.setAttribute('href', canonicalHref);
+        document.head.appendChild(link);
+    }
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 
 $('#form-vid-search').on('submit', function (e) {
     e.preventDefault();
@@ -41,7 +89,7 @@ $('#form-vid-search').on('submit', function (e) {
         channel.setAttribute('title', 'Channel');
         description.setAttribute('title', 'Description');
         title.setAttribute('title', 'Title');
-        img.setAttribute('title', 'Video thumbnail');
+        img.setAttribute('alt', 'Video thumbnail');
         channelTitle.innerText = vid.channelTitle;
         channelTitle.href = 'https://www.youtube.com/channel/' + vid.channelId;
         channelTitle.target = '_blank'
@@ -65,34 +113,47 @@ $('#vids-results').on('click', 'img, .media-heading', function (e) {
     var el = $(e.target).closest('article');
     var json = el.attr('data-state');
     var state = JSON.parse(json);
-    var vid = state.vid;
-    var id = state.id;
-    $('#create-comment').attr('state', json);
-    $('#ytb-video').attr('src', 'https://www.youtube.com/embed/' + id);
+    var videoId = state.id;
+    console.log(state);
+    analyzeNewVideo(videoId);
+    loadUrlParams(videoId);
+    if (window.history) {
+        console.log('push state');
+        window.history.pushState({ videoId: videoId },
+            appConf.siteTitle + ' ' + state.title,
+            '/?video=' + encodeURIComponent(videoId));
+    }
+});
+
+function analyzeNewVideo(videoId) {
+    $('#create-comment').attr('data-id', videoId);
+    $('#ytb-video').attr('src', 'https://www.youtube.com/embed/' + videoId);
     newComment();
     $('html, body').animate({
         scrollTop: $("#create-comment").offset().top - 70
     }, 200);
-});
+}
 
 function newComment() {
     $('#comment-loader').show();
     $('#comment').hide();
 
-    var state = JSON.parse($('#create-comment').attr('state'));
-    var vid = state.vid;
-    var id = state.id;
+    var id = $('#create-comment').attr('data-id');
+    console.log(id);
     $.when($.ajax({
         dataType: "json",
         url: 'https://randomuser.me/api/',
         cache: false,
     }), $.ajax({
-        dataType: "text",
+        dataType: "json",
         cache: false,
-        url: window.appConf.apiUrl + '/ml/text/markov-yt-comments/' + id,
-    })).then(function (rndUserReq, generatedCommentReq) {
+        url: window.appConf.apiUrl + '/ml/text/comment-words/' + id,
+    })).then(function (rndUserReq, commentsReq) {
+        var comments = commentsReq[0].map(c => createWords(c));
+        var markov = new MarkovTextGenerator();
+        comments.forEach(c => markov.markovTrain(c));
+        var generatedComment = markov.markovMakeSentence(5);
         var rndUser = rndUserReq[0];
-        var generatedComment = generatedCommentReq[0];
         console.log(rndUser, generatedComment);
 
         $('#time-ago').text(Math.floor(Math.random() * 23 + 1));

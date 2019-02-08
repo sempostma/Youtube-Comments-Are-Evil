@@ -58,7 +58,8 @@
 
 <script>
     window.appConf = {
-        apiUrl: '{{ site.api_url }}'
+        apiUrl: '{{ site.api_url }}',
+        siteTitle: '{{ site.title }}',
     }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js" integrity="sha256-THlgZSjqt7idNSdnUvGypTuXB5C4hV9kSuPYrbiq19o=" crossorigin="anonymous"></script>
@@ -66,6 +67,7 @@
     crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
+<script src="{{ "/assets/js/markov.js" | absolute_url }}" type="text/javascript"></script>
 <script src="{{ "/assets/js/main.js" | absolute_url }}" type="text/javascript"></script>
 <script src="{{ "/assets/js/smoothscroll.js" | absolute_url }}" type="text/javascript"></script>
     
