@@ -146,7 +146,7 @@ function newComment() {
         cache: false,
     }), $.ajax({
         dataType: "json",
-        cache: false,
+        cache: true,
         url: window.appConf.apiUrl + '/ml/text/comment-words/' + id,
     })).then(function (rndUserReq, commentsReq) {
         var comments = commentsReq[0].map(c => createWords(c));
