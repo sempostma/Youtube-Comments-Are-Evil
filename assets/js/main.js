@@ -54,6 +54,7 @@ $('#form-vid-search').on('submit', function (e) {
     $('#vids-results').empty().append('<div class="loader"></div>')
     $.ajax({
         dataType: "json",
+        cache: true,
         url: window.appConf.apiUrl + '/yt/search?q=' + encodeURIComponent(q),
         success: handleSearchDone,
         error: function () { alert('Unable to search videos'); }
